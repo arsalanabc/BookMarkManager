@@ -16,13 +16,13 @@ GEM
     mustermann (1.0.2)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    pg (1.0.0)
     public_suffix (3.0.2)
     rack (2.0.5)
     rack-protection (2.0.1)
       rack
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
-    rake (12.3.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -52,13 +52,10 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
-  rake
+  pg
   rspec
   shotgun
   sinatra
-
-RUBY VERSION
-   ruby 2.5.0p0
 
 BUNDLED WITH
    1.16.2
