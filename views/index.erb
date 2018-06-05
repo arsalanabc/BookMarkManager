@@ -1,4 +1,13 @@
 
-<h1> www.google.com </h1>
-<h1> www.reddit.com </h1> 
-<h1> www.this.com </h1>
+
+<ul>
+  <% @bookmark_urls.each do |bookmark| %>
+    <li><%= bookmark %></li>
+  <% end %>
+</ul>
+
+<form>
+	<label>Add a new bookmark: </label>
+	<input type="text" name="bookmark">
+	<input type="submit" name="Add">
+</form>
