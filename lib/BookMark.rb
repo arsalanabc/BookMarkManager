@@ -8,7 +8,14 @@ class BookMark
 	end
 
 	def all
-		connection = PG.connect :dbname => 'bookmark_manager'#, :user => 'rxr'
+		db_name = 'bookmark_manager'
+
+		if ENV['RACK_ENV'] == 'test'
+			db_name = 'bookmark_manager_test'
+		end 
+
+
+		connection = PG.connect :dbname => db_name#, :user => 'rxr'
 		rows = connection.exec "SELECT * FROM bookmarks"
 		rows.each {|row| @urls << row['url']}
 

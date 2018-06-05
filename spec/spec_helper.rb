@@ -6,6 +6,7 @@ require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require 'setup_test_database'
 #require 'features/web_helpers'
 
 #tell Capybara about our app class
@@ -27,6 +28,10 @@ Capybara.app = BookMarkManager
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  config.before do
+    truncate_test_db
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

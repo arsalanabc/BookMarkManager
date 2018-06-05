@@ -4,6 +4,7 @@ require './lib/BookMark'
 class BookMarkManager < Sinatra::Base
 	
 	get '/' do
+		
 		bookmark = BookMark.new
 		@bookmark_urls = bookmark.all
     	erb :index
