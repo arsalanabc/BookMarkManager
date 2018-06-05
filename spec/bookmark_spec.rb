@@ -1,13 +1,10 @@
 require 'BookMark'
 
+describe BookMark do
 
-xdescribe BookMark do
-
-	it '#all' do 
-		url_list = ['www.askjeeves.com', 'www.facebook.com', 'www.this.com']
-
-		expect(subject.all).to eq (url_list) 
-
+	it "should add a bookmark to the database" do
+		subject.create("www.bing.com")
+		expect(subject.all).to include "www.bing.com"
 	end
 
 

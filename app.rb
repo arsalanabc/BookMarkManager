@@ -3,12 +3,17 @@ require './lib/BookMark'
 
 class BookMarkManager < Sinatra::Base
 	
-	get '/' do
-		
+	get '/' do	
 		bookmark = BookMark.new
 		@bookmark_urls = bookmark.all
     	erb :index
-  	end
+	end
+	
+	post "/create" do
+		bookmark = BookMark.new
+		bookmark.create params[:bookmark]
+		redirect "/"
+	end
 
 
 	  # Start the server if ruby file executed directly

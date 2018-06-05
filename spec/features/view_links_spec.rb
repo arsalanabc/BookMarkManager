@@ -17,8 +17,10 @@ feature 'viewing links' do
 end
 
 feature 'adding links' do
-	# scenario 'adding a new link' do
-	# 	visit('/')
-	# 	fill_in 'bookmark', with: 'www.newwebsite.com'
-	# end
+	scenario 'adding a new link' do
+		visit('/')
+		fill_in 'bookmark', with: 'www.milliondollarhomepage.com'
+		click_on "Add"
+		expect(page).to have_content "milliondollarhomepage.com"
+	end
 end
