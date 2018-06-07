@@ -14,10 +14,13 @@ class BookMarkManager < Sinatra::Base
 	end
 	
 	post "/create" do
-		if params[:bookmark] =~ /\A#{URI::regexp(['http', 'https'])}\z/
+		
+		if params[:url] =~ /\A#{URI::regexp(['http', 'https'])}\z/
 			bookmark = BookMark.new
-			bookmark.create params[:bookmark]
+			bookmark.create(params[:url], params[:title])
 		else 
+
+			
 			
 			flash[:notice] = "Invalid url"
 		end
