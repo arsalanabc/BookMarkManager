@@ -7,6 +7,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'setup_test_database'
+
 #require 'features/web_helpers'
 
 #tell Capybara about our app class

@@ -1,7 +1,11 @@
 require 'sinatra/base'
 require './lib/BookMark'
+require 'uri'
+require 'sinatra/flash'
 
 class BookMarkManager < Sinatra::Base
+	enable :sessions
+  	register Sinatra::Flash
 	
 	get '/' do	
 		bookmark = BookMark.new
@@ -10,8 +14,13 @@ class BookMarkManager < Sinatra::Base
 	end
 	
 	post "/create" do
-		bookmark = BookMark.new
-		bookmark.create params[:bookmark]
+		if params[:bookmark] =~ /\A#{URI::regexp(['http', 'https'])}\z/
+			bookmark = BookMark.new
+			bookmark.create params[:bookmark]
+		else 
+			
+			flash[:notice] = "Invalid url"
+		end
 		redirect "/"
 	end
 
