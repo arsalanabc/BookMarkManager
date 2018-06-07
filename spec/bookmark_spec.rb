@@ -19,6 +19,13 @@ describe BookMark do
 		expect(BookMark.all).to include b1.class
 	end
 
+	it '#delete' do
+		b1 = BookMark.create('http://youtube.com', 'youtube')
 
+		BookMark.delete(b1.id)	
+
+		expect(BookMark.all).not_to include b1.class
+
+	end
 
 end

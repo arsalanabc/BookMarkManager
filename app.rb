@@ -27,6 +27,12 @@ class BookMarkManager < Sinatra::Base
 		redirect "/"
 	end
 
+	get '/delete' do
+		
+		BookMark.delete(params[:delete_id])
+
+		redirect '/'
+	end
 
 	  # Start the server if ruby file executed directly
   run! if app_file == $0

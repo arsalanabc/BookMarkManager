@@ -37,6 +37,16 @@ class BookMark
 		
 	end
 
+	def self.delete(id)
+		db_name = 'bookmark_manager'
+		db_name = "bookmark_manager_test" if ENV['RACK_ENV'] == "test"
+		connection = PG.connect :dbname => db_name
+		results = connection.exec "DELETE FROM bookmarks WHERE id = #{id} returning id, url, title;"
+		
+		connection.close
+		
+	end
+
 
 
 	
