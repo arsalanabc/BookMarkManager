@@ -10,7 +10,7 @@ feature 'working with bookmark' do
 	
 
 		visit('/')
-		save_and_open_page
+		#save_and_open_page
 		expect(page).to have_content('MA')
 		expect(page).to have_content('FB')
 		expect(page).to have_content('TW')

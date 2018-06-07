@@ -8,16 +8,16 @@ class BookMarkManager < Sinatra::Base
   	register Sinatra::Flash
 	
 	get '/' do	
-		bookmark = BookMark.new
-		@bookmark_urls = bookmark.all
+		#bookmark = BookMark.new
+		@bookmark_urls = BookMark.all
     	erb :index
 	end
 	
 	post "/create" do
 		
 		if params[:url] =~ /\A#{URI::regexp(['http', 'https'])}\z/
-			bookmark = BookMark.new
-			bookmark.create(params[:url], params[:title])
+			
+			BookMark.create(params[:url], params[:title])
 		else 
 
 			
