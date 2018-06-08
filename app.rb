@@ -6,6 +6,7 @@ require 'sinatra/flash'
 class BookMarkManager < Sinatra::Base
 	enable :sessions
   	register Sinatra::Flash
+  	use Rack::MethodOverride
 	
 	get '/' do	
 		#bookmark = BookMark.new
@@ -27,12 +28,11 @@ class BookMarkManager < Sinatra::Base
 		redirect "/"
 	end
 
-	get '/delete' do
+	delete '/delete/:id' do
 		
-		BookMark.delete(params[:delete_id])
-
-		redirect '/'
-	end
+    	BookMark.delete(params['id'])
+    	redirect '/'
+  	end
 
 	  # Start the server if ruby file executed directly
   run! if app_file == $0

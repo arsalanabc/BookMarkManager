@@ -3,20 +3,22 @@ require 'BookMark'
 describe BookMark do
 
 	it "add a bookmark database" do
+
 		b1 = BookMark.create("http://www.bing.com", 'bing')
-		expect(BookMark.all).to include b1.class
+		b2 = BookMark.create('http://youtube.com', 'youtube')
+		expect(BookMark.all).to include b1
 	end
 
 	it 'varifying urls' do
 
 		b1 = BookMark.create("invalid-website", 'invalde url')		
-		expect(BookMark.all).not_to include b1.class
+		expect(BookMark.all).not_to include b1
 		
 	end
 
 	it 'passing a title' do
 		b1 = BookMark.create("http://www.bing.com", 'bing2')
-		expect(BookMark.all).to include b1.class
+		expect(BookMark.all).to include b1
 	end
 
 	it '#delete' do
@@ -28,4 +30,10 @@ describe BookMark do
 
 	end
 
+	it '#==' do
+		b1 = BookMark.new(1, "http://this.com", "this")
+		b2 = BookMark.new(2, "http://this.com", "that")
+
+		expect(b1).to eq b2
+	end 
 end

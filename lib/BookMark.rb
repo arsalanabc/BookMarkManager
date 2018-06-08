@@ -47,7 +47,11 @@ class BookMark
 		
 	end
 
-
+	def ==(bookmark)
+		
+		@url == bookmark.url
+				
+	end
 
 	
 
@@ -56,3 +60,5 @@ class BookMark
 	end
 
 end
+
+
