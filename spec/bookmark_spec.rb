@@ -36,4 +36,15 @@ describe BookMark do
 
 		expect(b1).to eq b2
 	end 
+
+	it "#update" do
+		
+
+		b1 = BookMark.create("http://www.bing.com", 'bing')
+		
+		b1 = BookMark.update(b1.id, "http://www.wikileaks.com", 'WL' )
+		
+		expect(b1.title).to eq 'WL'
+
+	end
 end

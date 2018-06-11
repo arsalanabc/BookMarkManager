@@ -1,4 +1,9 @@
+<style type="text/css">
+	.checkbox {visibility: hidden;}
+  span {visibility: hidden;}
+  input:checked + span {visibility: visible;}
 
+</style>
 
 <ul>
   <% @bookmark_urls.each do |bookmark| %>
@@ -6,11 +11,28 @@
       <a href="<%= bookmark.url %>" target="_blank">
         <%= bookmark.title %>
       </a>
+
+      <input class='checkbox' type="checkbox" id="<%= bookmark.id %>"></input>
+    <span>
+	      <form action="/edit/<%= bookmark.id %>" method="post">
+          <input type='hidden' name='_method' value='PUT'/>
+	      	<input type="text" name="title" value="<%= bookmark.title %>">
+	      	<input type="text" name="url" value="<%= bookmark.url %>">
+	      	<input type="submit" value="Update">
+	      </form>
+    </span>
+
+      
+
+      <label type='button' for="<%= bookmark.id %>">Edit</label>
+
       <form action="/delete/<%= bookmark.id %>" method="post">
         <input type='hidden' name='_method' value='DELETE'/>
        <input type="hidden" name="delete_id" value="<%= bookmark.id %>">
         <input type="submit" value="Delete" />
       </form>
+
+
     </li>
   <% end %>
 </ul>

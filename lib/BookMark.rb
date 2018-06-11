@@ -37,6 +37,21 @@ class BookMark
 		
 	end
 
+	def self.update(id, new_url, new_title)
+
+		return false unless url_checker(new_url)
+
+		db_name = 'bookmark_manager'
+		db_name = "bookmark_manager_test" if ENV['RACK_ENV'] == "test"
+		connection = PG.connect :dbname => db_name
+		results = connection.exec "UPDATE bookmarks SET url = '#{new_url}', title = '#{new_title}' WHERE id= '#{id}' returning id, url, title;"
+		
+		connection.close
+		BookMark.new(results.first['id'], results.first['url'], results.first['title'])
+		
+	end
+
+
 	def self.delete(id)
 		db_name = 'bookmark_manager'
 		db_name = "bookmark_manager_test" if ENV['RACK_ENV'] == "test"
@@ -50,8 +65,9 @@ class BookMark
 	def ==(bookmark)
 		
 		@url == bookmark.url
-				
+
 	end
+
 
 	
 

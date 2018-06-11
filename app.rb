@@ -34,6 +34,11 @@ class BookMarkManager < Sinatra::Base
     	redirect '/'
   	end
 
+  	put '/edit/:id' do
+  		BookMark.update(params[:id], params[:url], params[:title])
+  		redirect '/'
+  	end
+
 	  # Start the server if ruby file executed directly
   run! if app_file == $0
 end
